@@ -27,8 +27,9 @@ if len(models_info) > 1:
     for i in range(1, len(models_info)):
         s = re.split(r'\s+', models_info[i])
         if len(s) > 1:
-            model_names.append(s[0])
-            model_map[s[0]] = "<p>" + tt[0] + ": " + s[0] + "</p><p>" + tt[1] + ": " + \
+            if 'deepseek' in s[0]:
+                model_names.append(s[0])
+                model_map[s[0]] = "<p>" + tt[0] + ": " + s[0] + "</p><p>" + tt[1] + ": " + \
                               s[1] + "</p><p>" + tt[2] + ": " + s[2] + " " + s[3] + "</p>"
     model_names = sorted(model_names)
 else:
@@ -36,6 +37,7 @@ else:
     model_names.append("")
 
 im = Image.open("static/deepseek-color.png")
+
 
 def main():
     if 'Model' not in st.session_state:
@@ -114,7 +116,7 @@ def main():
         select { width: 100%; }
     </style>
     """, unsafe_allow_html=True)
-    st.title("🤖 :blue[DeepSeek AI Assistant]")
+    st.title("🤖 :gray[DeepSeek AI Assistant]")
     html = '''
     <p style="color:black">🔆 Powered by Ollama, LangChain and local running DeepSeek LLM</p>
     '''
@@ -172,7 +174,7 @@ def main():
                         <img src="app/static/user.png" width="40px" height="40px">
                         <strong style="font-size: 18px;">You:</strong>
                     </div>
-                    <div style="height:100px; overflow-y:auto">
+                    <div style="height:80px; overflow-y:auto">
                     {chat['user']}
                     </div>
                 </div>
@@ -185,7 +187,7 @@ def main():
                         <img src="app/static/deepseek.png" width="40px" height="40px">
                         <strong style="font-size: 18px;color: black;">DeepSeek:</strong>
                     </div>
-                    <div style="height:300px; overflow-y:auto">
+                    <div style="height:240px; overflow-y:auto">
                     <strong style="font-size: 14px;color: black;">
                     {chat['assistant']}
                     </strong>
@@ -208,10 +210,10 @@ def main():
         if submitted and user_input:
             #: blue, green, orange, red, violet, gray/grey, rainbow
             with st.spinner("✨ :gray[Generating response...]"):
+                chat_pps = []
                 prompt = HumanMessagePromptTemplate.from_template(user_input)
-                chat_history = get_history()
-                chat_history.append(prompt)
-                response = generate_response(chat_history)
+                chat_pps.append(prompt)
+                response = generate_response(chat_pps)
                 st.session_state['chat_history'].append({
                     'user': user_input,
                     'assistant': response

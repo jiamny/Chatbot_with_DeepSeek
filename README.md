@@ -1,6 +1,6 @@
 # DeepSeek Chatbot with Ollama and LangChain
 
-Fully functional, locally run chatbot powered by **DeepSeek LLM**, **Ollama**, and **LangChain**. Plus attractive Streamlit-based front-end with chat history and modern UI.
+Fully functional, locally run chatbot and pdf RAG powered by **DeepSeek LLM**, **Ollama**, and **LangChain**. Plus attractive Streamlit-based front-end with chat history and modern UI.
 
 
 ## Prerequisites
@@ -32,6 +32,12 @@ Before running the chatbot, ensure you have the following installed:
    
    [server]
    enableStaticServing = true
+   
+   
+## projects
+
+- deepseek_r1_chatbot
+- PDF_locally_RAG
 
 
 ## Running the Chatbot
