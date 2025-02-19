@@ -17,17 +17,19 @@ Before running the chatbot, ensure you have the following installed:
 
 1. **Install Ollama**:
    - Download and install Ollama from [here](https://ollama.ai/).
-   - Pull the DeepSeek models, for example: deepseek-r1:1.5b 
+   - Pull embedding model nomic-embed-text, and the DeepSeek models, like deepseek-r1:1.5b 
      
      ollama pull deepseek-r1:1.5b
+     ollama pull deepseek-r1:latest
+     ollama pull nomic-embed-text 
      
 
 2. **Set Up Python Environment**:
    - Install the required Python packages:
        
-     pip install streamlit langchain-ollama
+     pip install -r requirements.txt
      
-3. **Create/edit .streamlit/config.toml file to load images in static folder**:(https://docs.streamlit.io/develop/concepts/configuration/serving-static-files)
+3. **Create/edit .streamlit/config.toml file to load local images**:(https://docs.streamlit.io/develop/concepts/configuration/serving-static-files)
    - add the following two line to config.toml and save it:
    
    [server]
@@ -35,9 +37,11 @@ Before running the chatbot, ensure you have the following installed:
    
    
 ## projects
+1. **deepseek_r1_chatbot** 
+![Alt text](./deep_seek_chat.png?raw=true)
 
-- deepseek_r1_chatbot
-- PDF_locally_RAG
+2. **PDF_locally_RAG**
+![Alt text](./pdf_rag.png?raw=true)
 
 
 ## Running the Chatbot
